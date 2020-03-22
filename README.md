@@ -7,6 +7,7 @@ The Sample includes the following:
 - CMake with the correct references to Boost (Log) and the STL threading package
 - VSCode Cmake build tasks for the current directory (including Default Build Task)
 - Hello world type of an executable app
+- Launch configuration for debugging the app wth GDB from within VS Code.
 
 Prerequisites:
 - VS Code has to be installed
