@@ -5,6 +5,7 @@ The Sample includes the following:
 - CMake with the correct references to Boost (Log) and the STL threading package
 - VSCode Cmake build tasks for the current directory
 - Hello world type of an executable app
+
 Prerequisites:
 - VS Code has to be installed
 - Boost has to be installed
