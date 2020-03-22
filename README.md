@@ -5,3 +5,9 @@ The Sample includes the following:
 - CMake with the correct references to Boost (Log) and the STL threading package
 - VSCode Cmake build tasks for the current directory
 - Hello world type of an executable app
+Prerequisites:
+- VS Code has to be installed
+- Boost has to be installed
+- VS Code Plugin: CMake langage support for Visual Studio Code
+- VS Code Plugin: C/C++ IntelliSense, debugging, and code browsing.
+- VS Code Plugin: Extended CMake support in Visual Studio Code
