@@ -1,6 +1,7 @@
 # linux_cmake_vscode
 Sample VS Code Project for building C++ apps on Linux.
-Can easily be used as a starting point for building other apps.
+Can easily be used as a starting point for building other apps. 
+CMake will generate Make files in verbose mode.
 
 The Sample includes the following:
 - CMake with the correct references to Boost (Log) and the STL threading package
