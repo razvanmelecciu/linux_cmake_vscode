@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "CMake_Build",
+            "label": "CMake_Build_Debug",
             "type": "shell",
-            "command": "/usr/bin/cmake --no-warn-unused-cli -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -H${workspaceFolder} -B${workspaceFolder}/build \"-GUnix Makefiles\"",
+            "command": "cmake --no-warn-unused-cli -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -H${workspaceFolder} -B${workspaceFolder}/build \"-GUnix Makefiles\"",
             "group": "build",
             "presentation": 
             {
@@ -14,10 +14,31 @@
             }
         },
         {
-            "label": "CMake_Compile",
+            "label": "CMake_Compile_Debug",
             "type": "shell",
-            "dependsOn": "CMake_Build",
-            "command": "/usr/bin/cmake --build ${workspaceFolder}/build --config Debug --target all -- -j 4",
+            "dependsOn": "CMake_Build_Debug",
+            "command": "cmake --build ${workspaceFolder}/build --config Debug --target all -- -j 4",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake_Build_Release",
+            "type": "shell",
+            "command": "cmake --no-warn-unused-cli -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -H${workspaceFolder} -B${workspaceFolder}/build \"-GUnix Makefiles\"",
+            "group": "build",
+            "presentation": 
+            {
+                "clear": true
+            }
+        },
+        {
+            "label": "CMake_Compile_Release",
+            "type": "shell",
+            "dependsOn": "CMake_Build_Release",
+            "command": "cmake --build ${workspaceFolder}/build --config Release --target all -- -j 4",
             "group": {
                 "kind": "build",
                 "isDefault": true

@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "g++ build and debug active file",
+            "name": "g++ build and debug app",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/main_app",
+            "program": "${workspaceFolder}/build/bin/main_app",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -22,7 +22,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "CMake_Compile",
+            "preLaunchTask": "CMake_Compile_Debug",
             "miDebuggerPath": "/usr/bin/gdb"
         }
     ]
