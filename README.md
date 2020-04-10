@@ -12,6 +12,6 @@ The Sample includes the following:
 Prerequisites:
 - VS Code has to be installed
 - Boost has to be installed
-- VS Code Plugin: CMake langage support for Visual Studio Code
+- VS Code Plugin: CMake language support for Visual Studio Code
 - VS Code Plugin: C/C++ IntelliSense, debugging, and code browsing.
 - VS Code Plugin: Extended CMake support in Visual Studio Code
