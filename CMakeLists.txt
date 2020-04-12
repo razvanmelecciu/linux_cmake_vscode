@@ -26,6 +26,7 @@ add_definitions(-DBOOST_LOG_DYN_LINK)
 find_package(Threads REQUIRED)
 find_package(Boost ${BOOST_VER} COMPONENTS log)
 find_package(TBB REQUIRED)
+find_package(OpenMP REQUIRED)
 
 # Debug messages
 message(STATUS "-----------------------------")
@@ -39,13 +40,17 @@ if(TBB_FOUND)
     message(STATUS "TBB Version: " ${TBB_VERSION_MAJOR} ${TBB_VERSION.MINOR})
     message(STATUS "TBB Interface Version: " ${TBB_INTERFACE_VERSION})
 endif()
+if(OpenMP_FOUND)
+    message(STATUS "OpenMP Spec Date: " ${OpenMP_CXX_SPEC_DATE})
+    message(STATUS "OpenMP C++ Flags: " ${OpenMP_CXX_FLAGS})
+endif()
 message(STATUS "-----------------------------")
 
 # Compile and assemble into a target
-if(Boost_FOUND AND TBB_FOUND)
+if(Boost_FOUND AND TBB_FOUND AND OpenMP_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
     add_executable(main_app main_launch.cpp)
-    target_link_libraries(main_app Threads::Threads Boost::log tbb)
+    target_link_libraries(main_app Threads::Threads Boost::log tbb OpenMP::OpenMP_CXX)
     target_include_directories(main_app PUBLIC "${PROJECT_BINARY_DIR}")
 endif()
 
