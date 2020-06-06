@@ -5,7 +5,7 @@ configure_file(config.h.in config.h)
 # Set variables
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(BOOST_VER 1.58.0)
+set(BOOST_VER 1.71.0)
 set(SECTION_SEPARATOR "----------------------------------------------------------")
 
 set(Boost_USE_STATIC_LIBS OFF) 
