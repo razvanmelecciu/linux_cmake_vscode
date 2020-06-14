@@ -3,7 +3,7 @@ project(main_app VERSION 1.0.0)
 configure_file(config.h.in config.h)
 
 # Set variables
-#set(GCC_CUSTOM_COMPILE_FLAGS "-fprofile-arcs -ftest-coverage")
+#set(GCC_CUSTOM_COMPILE_FLAGS "-fprofile-arcs -ftest-coverage -fcoroutines")
 #set(GCC_CUSTOM_LINK_FLAGS    "-lgcov")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
