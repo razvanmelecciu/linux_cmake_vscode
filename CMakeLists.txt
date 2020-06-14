@@ -3,6 +3,8 @@ project(main_app VERSION 1.0.0)
 configure_file(config.h.in config.h)
 
 # Set variables
+#set(GCC_CUSTOM_COMPILE_FLAGS "-fprofile-arcs -ftest-coverage")
+#set(GCC_CUSTOM_LINK_FLAGS    "-lgcov")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(BOOST_VER 1.71.0)
@@ -48,6 +50,16 @@ if(OpenMP_FOUND)
     message(STATUS "OpenMP C++ Flags: " ${OpenMP_CXX_FLAGS})
 endif()
 message(STATUS ${SECTION_SEPARATOR})
+
+# Append custom compile flags
+if (GCC_CUSTOM_COMPILE_FLAGS)
+    message(STATUS "Custom g++ compile Flags: " ${GCC_CUSTOM_COMPILE_FLAGS})
+    set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_CUSTOM_COMPILE_FLAGS}")
+endif()
+if (GCC_CUSTOM_LINK_FLAGS)
+    message(STATUS "Custom g++/ld link Flags: " ${GCC_CUSTOM_LINK_FLAGS})
+    set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_CUSTOM_LINK_FLAGS}")
+endif()
 
 # Compile and assemble into a target
 add_executable(main_app main_launch.cpp)
