@@ -30,7 +30,9 @@ find_package(TBB)
 find_package(OpenMP)
 
 # Debug messages
+
 message(STATUS ${SECTION_SEPARATOR})
+message(STATUS "G++ Version: "${CMAKE_CXX_COMPILER})
 message(STATUS "CMAKE_CURRENT_SOURCE_DIR: " ${CMAKE_CURRENT_SOURCE_DIR})
 message(STATUS "CMAKE_MODULE_PATH: " ${CMAKE_MODULE_PATH})
 message(STATUS "C++ Standard: " ${CMAKE_CXX_STANDARD})
