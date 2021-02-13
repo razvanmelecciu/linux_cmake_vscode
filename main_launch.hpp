@@ -2,6 +2,8 @@
 #include <boost/format.hpp>
 #include <boost/version.hpp>
 
+#include <SFML/Graphics.hpp>
+
 #define BOOST_TRACE BOOST_LOG_TRIVIAL(trace)
 #define LOG(x) BOOST_TRACE << boost::format(x)
 
