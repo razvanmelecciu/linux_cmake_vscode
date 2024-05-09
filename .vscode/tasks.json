@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "CMake_Configure_Debug",
+            "label": "[CMake] Clean Build Directory",
             "type": "shell",
-            "command": "cmake --no-warn-unused-cli -DCMAKE_C_COMPILER=gcc-10 -DCMAKE_CXX_COMPILER=g++-10 -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -H${workspaceFolder} -B${workspaceFolder}/build \"-GUnix Makefiles\"",
+            "command": "rm -rfv ${workspaceFolder}/build",
             "group": "build",
             "presentation": {
                 "clear": true
@@ -14,9 +14,22 @@
             "problemMatcher": []
         },
         {
-            "label": "CMake_Build_Debug",
+            "label": "[CMake] Configure Debug G++",
             "type": "shell",
-            "dependsOn": "CMake_Configure_Debug",
+            "dependsOrder": "sequence",
+            "dependsOn": "[CMake] Clean Build Directory",
+            "command": "cmake --no-warn-unused-cli -DCMAKE_TOOLCHAIN_FILE:STRING=~/Utilities/Vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -H${workspaceFolder} -B${workspaceFolder}/build \"-GUnix Makefiles\"",
+            "group": "build",
+            "presentation": {
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "[CMake] Build Debug G++",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": "[CMake] Configure Debug G++",
             "command": "cmake --build ${workspaceFolder}/build --config Debug --target all -- -j 4",
             "group": {
                 "kind": "build",
@@ -25,22 +38,122 @@
             "problemMatcher": []
         },
         {
-            "label": "CMake_Configure_Release",
+            "label": "[CMake] Configure Release G++",
             "type": "shell",
-            "command": "cmake --no-warn-unused-cli -DCMAKE_C_COMPILER=gcc-10 -DCMAKE_CXX_COMPILER=g++-10 -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -H${workspaceFolder} -B${workspaceFolder}/build \"-GUnix Makefiles\"",
+            "dependsOrder": "sequence",
+            "dependsOn": "[CMake] Clean Build Directory",
+            "command": "cmake --no-warn-unused-cli -DCMAKE_TOOLCHAIN_FILE:STRING=~/Utilities/Vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -H${workspaceFolder} -B${workspaceFolder}/build \"-GUnix Makefiles\"",
             "group": "build",
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "CMake_Build_Release",
+            "label": "[CMake] Build Release G++",
             "type": "shell",
-            "dependsOn": "CMake_Configure_Release",
+            "dependsOrder": "sequence",
+            "dependsOn": "[CMake] Configure Release G++",
             "command": "cmake --build ${workspaceFolder}/build --config Release --target all -- -j 4",
             "group": {
                 "kind": "build",
                 "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "[CMake] Configure Debug Clang",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": "[CMake] Clean Build Directory",
+            "command": "cmake --no-warn-unused-cli -DCMAKE_TOOLCHAIN_FILE:STRING=~/Utilities/Vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -H${workspaceFolder} -B${workspaceFolder}/build \"-GUnix Makefiles\"",
+            "group": "build",
+            "presentation": {
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "[CMake] Build Debug Clang",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": "[CMake] Configure Debug Clang",
+            "command": "cmake --build ${workspaceFolder}/build --config Debug --target all -- -j 4",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "[CMake] Configure Release Clang",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": "[CMake] Clean Build Directory",
+            "command": "cmake --no-warn-unused-cli -DCMAKE_TOOLCHAIN_FILE:STRING=~/Utilities/Vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -H${workspaceFolder} -B${workspaceFolder}/build \"-GUnix Makefiles\"",
+            "group": "build",
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "[CMake] Build Release Clang",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": "[CMake] Configure Release Clang",
+            "command": "cmake --build ${workspaceFolder}/build --config Release --target all -- -j 4",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "[Test] Run All Unit Tests",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/bin/main_test",
+            "group": "test",
+            "presentation": {
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "[Test] Clear GCov Analysis",
+            "type": "shell",
+            "command": "rm -rfv ${workspaceFolder}/test/gcov && mkdir ${workspaceFolder}/test/gcov",
+            "group": "test",
+            "presentation": {
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "[Test] Run Unit Testing GCov Analysis",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": "[Test] Create gcov location",
+            "command": "${workspaceFolder}/build/bin/main_test && gcov ${workspaceFolder}/build/test/CMakeFiles/main_test.dir/tests.cpp.gcno -lkq",
+            "group": "test",
+            "options": {
+                "cwd": "${workspaceFolder}/test/gcov"
+            },
+            "presentation": {
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "[Test] Run Unit Testing GCovR Analysis",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": "[Test] Create gcov location",
+            "command": "${workspaceFolder}/build/bin/main_test && gcovr --root ${workspaceFolder}/src --object-directory ${workspaceFolder}/build/test/CMakeFiles/main_test.dir -s --html --html-details -o report.html",
+            "group": "test",
+            "options": {
+                "cwd": "${workspaceFolder}/test/gcov"
+            },
+            "presentation": {
+                "clear": false
             },
             "problemMatcher": []
         }

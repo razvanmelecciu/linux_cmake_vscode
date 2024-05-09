@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <execution>
 
+#include <fmt/core.h>
+
 #include "main_launch.hpp"
 #include "config.h"
 
@@ -20,7 +22,7 @@ void printDuration(std::chrono::steady_clock::time_point start,
 }
 
 template<typename T>
-void test(const T &policy, const std::vector<double> &data, 
+void test(const T& policy, const std::vector<double> &data,
           const int repeat, const char *message) 
 {
     for(int i = 0; i < repeat; ++i) 
@@ -60,28 +62,21 @@ void doTBBTest()
     test(std::execution::par, data, repeat, "Elapsed time");
 }
 
-int main(int argc, char** argv)
+void doFmtTest()
 {
-    /*LOG("Main app version %s, Boost version %d.%d.%d") %PROJECT_VER 
-                                                       %BOOST_VER_MAJOR 
-                                                       %BOOST_VER_MINOR 
-                                                       %BOOST_VER_PATCH;
-    auto crtPath = std::filesystem::current_path();
-    LOG("Current directory: %s") %crtPath;
-    LOG("No. passed parameters: %d") %argc;
-    for (auto i = 0; i < argc; ++i)
-    {
-        LOG("Param %d >> %s") %i %argv[i];
-    }
+    std::string s = fmt::format("Formatting library is {}.", "fmt");
+    LOG(s);
+}
 
-    doTBBTest();*/
-
+void doSfmlTest()
+{
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
     while (window.isOpen())
     {
+        
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -93,6 +88,26 @@ int main(int argc, char** argv)
         window.draw(shape);
         window.display();
     }
+}
+
+void printAppDetails(int argc, char** argv)
+{
+    LOG("Main app version %s, Boost version %d.%d.%d") %PROJECT_VER
+                                                       %BOOST_VER_MAJOR 
+                                                       %BOOST_VER_MINOR 
+                                                       %BOOST_VER_PATCH;
+    auto crtPath = std::filesystem::current_path();
+    LOG("Current directory: %s") %crtPath;
+    LOG("No. passed parameters: %d") %argc;
+    for (auto i = 0; i < argc; ++i)
+    {
+        LOG("Param %d >> %s") %i %argv[i];
+    }
+}
+
+int main(int argc, char** argv)
+{
+    doFmtTest();
 
     return 0;
 }

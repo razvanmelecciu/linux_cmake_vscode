@@ -1,5 +1,5 @@
 {
-    "cmake.configureOnOpen": true,
+    "cmake.configureOnOpen": false,
     "files.associations": {
         "cctype": "cpp",
         "clocale": "cpp",
@@ -51,6 +51,27 @@
         "utility": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "*.in": "cpp"
-    }
+        "*.in": "cpp",
+        "codecvt": "cpp",
+        "unordered_set": "cpp",
+        "filesystem": "cpp",
+        "optional": "cpp",
+        "string_view": "cpp",
+        "bit": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "iterator": "cpp",
+        "memory_resource": "cpp",
+        "random": "cpp",
+        "string": "cpp",
+        "forward_list": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "numbers": "cpp",
+        "ranges": "cpp",
+        "stop_token": "cpp",
+        "variant": "cpp",
+        "semaphore": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

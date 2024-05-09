@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "g++ build and debug app",
+            "name": "Gcc build and debug app",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/bin/main_app",
@@ -22,8 +22,29 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "CMake_Build_Debug",
+            "preLaunchTask": "[CMake] Build Debug G++",
             "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Clang build and debug app",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/main_app",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "[CMake] Build Debug Clang",
+            "miDebuggerPath": "/usr/bin/lldb-mi"
         }
     ]
 }
